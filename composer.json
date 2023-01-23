@@ -1,0 +1,48 @@
+{
+    "name": "imjonos/laravel-emoji-reaction",
+    "description": "Laravel emoji reaction package",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Eugeny Nosenko",
+            "email": "info@toprogram.ru",
+            "homepage": "https://toprogram.ru"
+        }
+    ],
+    "homepage": "https://github.com/imjonos/emoji-reaction",
+    "keywords": [
+        "Laravel",
+        "Service",
+        "emoji reaction",
+        "emoji",
+        "reaction"
+    ],
+    "require": {
+        "illuminate/support": "~5|~6|~7|~8",
+        "doctrine/dbal": "*",
+        "imjonos/laravel-base-service": "*",
+        "caseyamcl/guzzle_retry_middleware": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~7.0",
+        "mockery/mockery": "^1.1",
+        "orchestra/testbench": "~3.0",
+        "sempro/phpunit-pretty-print": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Nos\\EmojiReaction\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Nos\\EmojiReaction\\EmojiReactionServiceProvider"
+            ]
+        }
+    }
+}
