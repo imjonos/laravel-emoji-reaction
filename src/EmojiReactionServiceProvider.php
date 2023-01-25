@@ -3,6 +3,12 @@
 namespace Nos\EmojiReaction;
 
 use Illuminate\Support\ServiceProvider;
+use Nos\EmojiReaction\Interfaces\Repositories\EmojiRepositoryInterface;
+use Nos\EmojiReaction\Interfaces\Repositories\ReactionRepositoryInterface;
+use Nos\EmojiReaction\Interfaces\Repositories\ReactionStatisticRepositoryInterface;
+use Nos\EmojiReaction\Repositories\EmojiRepository;
+use Nos\EmojiReaction\Repositories\ReactionRepository;
+use Nos\EmojiReaction\Repositories\ReactionStatisticRepository;
 
 final class EmojiReactionServiceProvider extends ServiceProvider
 {
@@ -50,6 +56,9 @@ final class EmojiReactionServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->mergeConfigFrom(__DIR__ . '/../config/emoji-reaction.php', 'emoji-reaction');
+        app()->bind(EmojiRepositoryInterface::class, EmojiRepository::class);
+        app()->bind(ReactionRepositoryInterface::class, ReactionRepository::class);
+        app()->bind(ReactionStatisticRepositoryInterface::class, ReactionStatisticRepository::class);
     }
 
     /**

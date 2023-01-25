@@ -1,5 +1,6 @@
 # Laravel Email Verification
 
+https://unicode.org/emoji/charts/full-emoji-list.html
 description
 
 ## Installation
