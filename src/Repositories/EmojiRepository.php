@@ -13,4 +13,9 @@ use Nos\EmojiReaction\Models\Emoji;
 final class EmojiRepository extends EloquentRepository implements EmojiRepositoryInterface
 {
     protected string $class = Emoji::class;
+
+    public function upsert(array $values, array $uniqueBy, ?array $update = null): int
+    {
+        return $this->getModel()->upsert($values, $uniqueBy, $update);
+    }
 }

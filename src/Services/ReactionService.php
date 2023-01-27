@@ -15,4 +15,9 @@ use Nos\EmojiReaction\Models\Reaction;
 final class ReactionService extends BaseService
 {
     protected string $repositoryClass = ReactionRepositoryInterface::class;
+
+    public function addReaction(): bool
+    {
+        return true;
+    }
 }

@@ -23,7 +23,6 @@ final class Emoji extends Model
 {
     use HasFactory;
 
-
     /**
      * The attributes that are mass assignable.
      *
