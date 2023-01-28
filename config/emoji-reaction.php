@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'models' => [
+
+    ],
     'emojis' => [
         '1F44D',
         '1F525',
