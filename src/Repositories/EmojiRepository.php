@@ -18,4 +18,9 @@ final class EmojiRepository extends EloquentRepository implements EmojiRepositor
     {
         return $this->getModel()->upsert($values, $uniqueBy, $update);
     }
+
+    public function firstOrCreate(array $data): Emoji
+    {
+        return $this->getModel()->firstOrCreate($data);
+    }
 }

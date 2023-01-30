@@ -15,14 +15,8 @@ final class CreateEmojiModelsTable extends Migration
     {
         Schema::create('emoji_models', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('emoji_id')->index();
             $table->string('model')->index();
             $table->timestamps();
-
-            $table->foreign('emoji_id')
-                ->references('id')
-                ->on('emojis')
-                ->onDelete('cascade');
         });
     }
 

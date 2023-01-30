@@ -13,7 +13,6 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property int $id
- * @property int $emoji_id
  * @property string $model
  * @property string $created_at
  * @property string $updated_at
@@ -28,8 +27,7 @@ final class EmojiModel extends Model
      * @var array
      */
     protected $fillable = [
-        'model',
-        'emoji_id'
+        'model'
     ];
 
     /**
@@ -57,5 +55,4 @@ final class EmojiModel extends Model
     {
         return $date->format('Y-m-d H:i:s');
     }
-
 }

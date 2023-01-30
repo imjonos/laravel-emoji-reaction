@@ -2,7 +2,7 @@
 
 namespace Nos\EmojiReaction\Services;
 
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Nos\BaseService\BaseService;
 use Nos\EmojiReaction\Interfaces\Repositories\EmojiModelRepositoryInterface;
 use Nos\EmojiReaction\Models\EmojiModel;
@@ -17,14 +17,15 @@ final class EmojiModelService extends BaseService
 {
     protected string $repositoryClass = EmojiModelRepositoryInterface::class;
 
-    public function all(): Collection
+    /**
+     * @throws BindingResolutionException
+     */
+    public function checkModels(): void
     {
         $emojis = collect(config('emoji-reaction.models'))
-            ->map(fn($code) => ['code' => $code])
+            ->map(fn($model) => ['model' => $model])
             ->toArray();
 
-        $this->getRepository()->upsert($emojis, ['code']);
-
-        return parent::all();
+        $this->getRepository()->upsert($emojis, ['model']);
     }
 }

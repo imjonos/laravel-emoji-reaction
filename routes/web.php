@@ -5,7 +5,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('/emoji-reactions', [EmojiReactionController::class, 'index'])->name(
             'emoji-reactions.index'
         );
-        Route::post('/emoji-reactions', [EmojiReactionController::class, 'store'])->name(
+        Route::post('/emoji-reactions/{emoji-model}', [EmojiReactionController::class, 'store'])->name(
             'emoji-reactions.store'
         );
     });

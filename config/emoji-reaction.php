@@ -2,7 +2,8 @@
 
 return [
     'models' => [
-
+        //For example
+        App\Models\User::class
     ],
     'emojis' => [
         '1F44D',
