@@ -3,7 +3,6 @@
 namespace Nos\EmojiReaction\Traits;
 
 use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Nos\EmojiReaction\Models\EmojiModel;
 use Nos\EmojiReaction\Models\ReactionStatistic;
 
 trait HasEmojiReationTrait
@@ -13,8 +12,13 @@ trait HasEmojiReationTrait
         return $this->morphMany(ReactionStatistic::class, 'model');
     }
 
-    public function emojiModel(): ?EmojiModel
+    public function getModelId(): int
     {
-        return EmojiModel::where('model', self::class)->first();
+        return $this->id;
+    }
+
+    public function getModelName(): string
+    {
+        return self::class;
     }
 }

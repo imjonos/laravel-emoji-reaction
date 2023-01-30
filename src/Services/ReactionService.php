@@ -2,7 +2,9 @@
 
 namespace Nos\EmojiReaction\Services;
 
+use Exception;
 use Nos\BaseService\BaseService;
+use Nos\EmojiReaction\Interfaces\Models\EmojiReactionInterface;
 use Nos\EmojiReaction\Interfaces\Repositories\ReactionRepositoryInterface;
 use Nos\EmojiReaction\Models\Reaction;
 
@@ -16,8 +18,26 @@ final class ReactionService extends BaseService
 {
     protected string $repositoryClass = ReactionRepositoryInterface::class;
 
-    public function addReaction(): bool
+    /**
+     * @throws Exception
+     */
+    public function addReaction(EmojiReactionInterface $emojiReactionModel, int $emojiId): void
     {
-        return true;
+        $fingerPrint = $this->getFingerPrint();
+
+        $this->getRepository()->firstOrCreate([
+            'emoji_id' => $emojiId,
+            'fingerprint' => $fingerPrint,
+            'model_type' => $emojiReactionModel->getModelName(),
+            'model_id' => $emojiReactionModel->getModelId()
+        ], [
+            'ip_address' => request()->ip(),
+            'user_agent' => request()->userAgent()
+        ]);
+    }
+
+    public function getFingerPrint(): string
+    {
+        return md5(request()->ip() . request()->userAgent());
     }
 }

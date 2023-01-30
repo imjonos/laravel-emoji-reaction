@@ -13,4 +13,9 @@ use Nos\EmojiReaction\Models\Reaction;
 final class ReactionRepository extends EloquentRepository implements ReactionRepositoryInterface
 {
     protected string $class = Reaction::class;
+
+    public function firstOrCreate(array $uniques, array $data): Reaction
+    {
+        return $this->getModel()->firstOrCreate($uniques, $data);
+    }
 }
