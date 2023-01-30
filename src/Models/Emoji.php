@@ -29,7 +29,7 @@ final class Emoji extends Model
      * @var array
      */
     protected $fillable = [
-        'code',
+        'code'
     ];
 
     /**
