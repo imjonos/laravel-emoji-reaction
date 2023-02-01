@@ -12,7 +12,7 @@ Description will be added later
 Via Composer
 
 ``` bash
-$ composer require
+$ composer require imjonos/laravel-emoji-reaction
 ```
 
 ``` bash
