@@ -5,7 +5,7 @@ namespace Nos\EmojiReaction\Traits;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Nos\EmojiReaction\Models\ReactionStatistic;
 
-trait HasEmojiReationTrait
+trait HasEmojiReactionTrait
 {
     public function reactionStatistics(): MorphMany
     {

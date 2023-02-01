@@ -18,7 +18,7 @@
         "reaction"
     ],
     "require": {
-        "illuminate/support": "~5|~6|~7|~8",
+        "illuminate/support": "~8",
         "doctrine/dbal": "*",
         "imjonos/laravel-base-service": "*"
     },
@@ -35,6 +35,7 @@
     },
     "autoload-dev": {
         "psr-4": {
+            "Nos\\EmojiReaction\\": "tests/"
         }
     },
     "extra": {
