@@ -14,8 +14,13 @@ final class ReactionRepository extends EloquentRepository implements ReactionRep
 {
     protected string $class = Reaction::class;
 
-    public function firstOrCreate(array $uniques, array $data): Reaction
+    public function firstOrCreate(array $uniques, array $data = []): Reaction
     {
         return $this->getModel()->firstOrCreate($uniques, $data);
+    }
+
+    public function updateOrCreate(array $uniques, array $data = []): Reaction
+    {
+        return $this->getModel()->updateOrCreate($uniques, $data);
     }
 }

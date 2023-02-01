@@ -8,6 +8,8 @@ interface EmojiReactionInterface
 {
     public function reactionStatistics(): MorphMany;
 
+    public function reactions(): MorphMany;
+
     public function getModelId(): int;
 
     public function getModelName(): string;

@@ -23,6 +23,7 @@ final class Emoji extends Model
 {
     use HasFactory;
 
+    protected $table = 'emojis';
     /**
      * The attributes that are mass assignable.
      *

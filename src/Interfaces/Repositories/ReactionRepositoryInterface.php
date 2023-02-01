@@ -7,5 +7,7 @@ use Nos\EmojiReaction\Models\Reaction;
 
 interface ReactionRepositoryInterface extends EloquentRepositoryInterface
 {
-    public function firstOrCreate(array $uniques, array $data): Reaction;
+    public function firstOrCreate(array $uniques, array $data = []): Reaction;
+
+    public function updateOrCreate(array $uniques, array $data = []): Reaction;
 }

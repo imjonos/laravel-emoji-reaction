@@ -10,6 +10,7 @@ namespace Nos\EmojiReaction\Models;
 use DateTimeInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property int $id
@@ -54,6 +55,11 @@ final class Reaction extends Model
      * @var string
      */
     protected $dateFormat = 'Y-m-d H:i:s';
+
+    public function emoji(): belongsTo
+    {
+        return $this->belongsTo(Emoji::class);
+    }
 
     /**
      * Prepare a date for array / JSON serialization.

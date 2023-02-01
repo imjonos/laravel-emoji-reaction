@@ -2,7 +2,9 @@
 
 namespace Nos\EmojiReaction\Services;
 
+use Illuminate\Support\Collection;
 use Nos\BaseService\BaseService;
+use Nos\EmojiReaction\Interfaces\Models\EmojiReactionInterface;
 use Nos\EmojiReaction\Interfaces\Repositories\ReactionStatisticRepositoryInterface;
 use Nos\EmojiReaction\Models\ReactionStatistic;
 
@@ -15,4 +17,21 @@ use Nos\EmojiReaction\Models\ReactionStatistic;
 final class ReactionStatisticService extends BaseService
 {
     protected string $repositoryClass = ReactionStatisticRepositoryInterface::class;
+
+    public function getByModel(EmojiReactionInterface $emojiReactionModel): Collection
+    {
+        $result = collect([]);
+        $stats = $emojiReactionModel->reactionStatistics()->where('count', '>', 0)->get();
+
+        if ($stats) {
+            $result = $stats->map(
+                fn($item) => [
+                    'code' => $item->code,
+                    'count' => $item->count
+                ]
+            );
+        }
+
+        return $result;
+    }
 }

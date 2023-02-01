@@ -10,12 +10,14 @@ namespace Nos\EmojiReaction\Models;
 use DateTimeInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property int $id
  * @property int $emoji_id
  * @property int $count
  * @property string $model_type
+ * @property string $code
  * @property int $model_id
  * @property string $created_at
  * @property string $updated_at
@@ -36,12 +38,16 @@ final class ReactionStatistic extends Model
         'model_id'
     ];
 
+    protected $appends = ['code'];
+
     /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
      */
     protected $hidden = [
+        'model_type',
+        'model_id'
     ];
 
     /**
@@ -50,6 +56,16 @@ final class ReactionStatistic extends Model
      * @var string
      */
     protected $dateFormat = 'Y-m-d H:i:s';
+
+    public function emoji(): belongsTo
+    {
+        return $this->belongsTo(Emoji::class);
+    }
+
+    public function getCodeAttribute(): string
+    {
+        return $this->emoji->code;
+    }
 
     /**
      * Prepare a date for array / JSON serialization.
