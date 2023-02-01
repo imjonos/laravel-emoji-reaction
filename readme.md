@@ -1,7 +1,11 @@
-# Laravel Email Verification
+# Laravel Emoji Reactions
 
+## v0.1a
+
+![img.png](img.png)
 https://unicode.org/emoji/charts/full-emoji-list.html
-description
+
+Description will be added later
 
 ## Installation
 
