@@ -67,8 +67,11 @@ Back-end part
      */
     public function addEmojiReaction(AddEmojiReactionRequest $request, Post $post): JsonResponse
     {
-        DB::transaction(function () use ($post, $request) {
-            $this->reactionService->addReaction($post, $request->get('emoji_id'));
+        $emoji = $this->emojiService->find($request->get('emoji_id'));
+        abort_if(!$emoji, 404);
+
+        DB::transaction(function () use ($post, $request, $emoji) {
+            $this->reactionService->addReaction($post, $emoji);
         });
 
         return response()->json();

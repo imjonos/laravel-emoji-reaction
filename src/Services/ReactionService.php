@@ -7,6 +7,7 @@ use Nos\BaseService\BaseService;
 use Nos\EmojiReaction\Interfaces\Models\EmojiReactionInterface;
 use Nos\EmojiReaction\Interfaces\Repositories\ReactionRepositoryInterface;
 use Nos\EmojiReaction\Interfaces\Repositories\ReactionStatisticRepositoryInterface;
+use Nos\EmojiReaction\Models\Emoji;
 use Nos\EmojiReaction\Models\Reaction;
 
 /**
@@ -28,7 +29,7 @@ final class ReactionService extends BaseService
     /**
      * @throws Exception
      */
-    public function addReaction(EmojiReactionInterface $emojiReactionModel, int $emojiId): void
+    public function addReaction(EmojiReactionInterface $emojiReactionModel, Emoji $emoji): void
     {
         $fingerPrint = $this->getFingerPrint();
 
@@ -43,11 +44,11 @@ final class ReactionService extends BaseService
         ], [
             'ip_address' => request()->ip(),
             'user_agent' => request()->userAgent(),
-            'emoji_id' => $emojiId
+            'emoji_id' => $emoji->id
         ]);
 
         $statistic = $this->reactionStatisticRepository->firstOrCreate([
-            'emoji_id' => $emojiId,
+            'emoji_id' => $emoji->id,
             'model_type' => $emojiReactionModel->getModelName(),
             'model_id' => $emojiReactionModel->getModelId()
         ]);
