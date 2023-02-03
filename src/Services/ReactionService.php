@@ -57,9 +57,7 @@ final class ReactionService extends BaseService
             'model_id' => $emojiReactionModel->getModelId()
         ]);
 
-        $this->reactionStatisticRepository->update($statistic->id, [
-            'count' => $statistic->count + 1
-        ]);
+        $this->reactionStatisticRepository->incrementCount($statistic);
 
         if (!$reaction->wasRecentlyCreated && $oldEmojiReaction) {
             $statistic = $this->reactionStatisticRepository->firstOrCreate([
@@ -68,9 +66,7 @@ final class ReactionService extends BaseService
                 'model_id' => $emojiReactionModel->getModelId()
             ]);
 
-            $this->reactionStatisticRepository->update($statistic->id, [
-                'count' => ($statistic->count > 0) ? $statistic->count - 1 : 0
-            ]);
+            $this->reactionStatisticRepository->decrementCount($statistic);
         }
     }
 

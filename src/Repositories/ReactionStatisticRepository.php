@@ -23,4 +23,21 @@ final class ReactionStatisticRepository extends EloquentRepository implements Re
     {
         return $this->getModel()->firstOrCreate($uniques, $data);
     }
+
+    public function incrementCount(ReactionStatistic $reactionStatistic): void
+    {
+        $this->update($statistic->id, [
+            'count' => $statistic->count + 1
+        ]);
+    }
+
+    public function decrementCount(ReactionStatistic $reactionStatistic): void
+    {
+        $count = $reactionStatistic->count;
+
+        $this->update($reactionStatistic->id, [
+            'count' => ($count > 0) ? $count - 1 : 0
+        ]);
+    }
+
 }

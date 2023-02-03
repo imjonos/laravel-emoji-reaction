@@ -10,4 +10,8 @@ interface ReactionStatisticRepositoryInterface extends EloquentRepositoryInterfa
     public function updateOrCreate(array $uniques, array $data = []): ReactionStatistic;
 
     public function firstOrCreate(array $uniques, array $data = []): ReactionStatistic;
+
+    public function incrementCount(ReactionStatistic $reactionStatistic): void;
+
+    public function decrementCount(ReactionStatistic $reactionStatistic): void;
 }
