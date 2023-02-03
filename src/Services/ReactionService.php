@@ -37,6 +37,10 @@ final class ReactionService extends BaseService
             ->where('fingerprint', $fingerPrint)
             ->first();
 
+        if ($oldEmojiReaction && $oldEmojiReaction->id === $emoji->id) {
+            return;
+        }
+
         $reaction = $this->getRepository()->updateOrCreate([
             'fingerprint' => $fingerPrint,
             'model_type' => $emojiReactionModel->getModelName(),
@@ -72,6 +76,7 @@ final class ReactionService extends BaseService
 
     public function getFingerPrint(): string
     {
+        //TODO: need to add service
         return md5(request()->ip() . request()->userAgent());
     }
 }
