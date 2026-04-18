@@ -37,7 +37,7 @@ final class ReactionService extends BaseService
             ->where('fingerprint', $fingerPrint)
             ->first();
 
-        if ($oldEmojiReaction && $oldEmojiReaction->id === $emoji->id) {
+        if ($oldEmojiReaction && $oldEmojiReaction->emoji_id === $emoji->id) {
             return;
         }
 
